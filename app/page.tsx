@@ -52,10 +52,10 @@ export default function Home() {
       {/* Main Content */}
       <main className="flex-1 z-10 w-full">
         {/* Hero Section */}
-        <section id="hero" className="min-h-[calc(100vh-80px)] flex items-center justify-center w-full max-w-7xl mx-auto px-6 md:px-8 pt-10 pb-0 md:pt-20 md:pb-0 lg:py-0 overflow-hidden">
-          <div className="flex flex-col lg:flex-row items-center lg:items-end justify-between gap-12 lg:gap-20 w-full min-h-[calc(100vh-80px)]">
+        <section id="hero" className="min-h-0 lg:min-h-[calc(100vh-80px)] flex items-center justify-center w-full max-w-7xl mx-auto px-6 md:px-8 md:pt-24 pb-8 lg:py-0 overflow-hidden">
+          <div className="flex flex-col lg:flex-row items-center lg:items-end justify-between gap-8 lg:gap-20 w-full min-h-0 lg:min-h-[calc(100vh-80px)]">
             {/* Left Column - Text */}
-            <div className="flex-1 flex flex-col gap-6 md:gap-8 max-w-2xl mt-8 lg:mt-0 lg:pb-15">
+            <div className="w-full lg:flex-1 flex flex-col gap-6 md:gap-8 max-w-2xl mt-0 lg:mt-0 lg:pb-15 order-2 lg:order-1">
               {/* Intro Chip */}
               <div className="relative group inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/90 dark:bg-zinc-900/80 backdrop-blur-md border border-zinc-200 dark:border-zinc-800/80 w-fit shadow-md shadow-zinc-100/50 dark:shadow-none hover:border-[var(--lavender)]/40 hover:scale-[1.015] transition-all duration-300 select-none">
                 {/* Purple Halo Behind */}
@@ -104,7 +104,7 @@ export default function Home() {
             </div>
 
             {/* Right Column - Image */}
-            <div className="flex-1 flex justify-center lg:justify-end items-end mt-12 lg:mt-0 z-10 lg:self-end">
+            <div className="w-full lg:flex-1 flex justify-center lg:justify-end items-end mt-6 lg:mt-0 z-10 lg:self-end order-1 lg:order-2">
               <div className="relative w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[380px] aspect-[4/5] lg:aspect-auto lg:h-[75vh] lg:w-full">
                 {/* Background Blob 1 - Rotating Clockwise */}
                 <div className="absolute top-1/2 left-1/2 w-[135%] h-[135%] -z-10 text-[var(--blob-color)] opacity-70 pointer-events-none flex items-center justify-center animate-spin-slow">
@@ -121,7 +121,7 @@ export default function Home() {
                 </div>
 
                 {/* Image cutout container */}
-                <div className="relative w-full h-full overflow-hidden rounded-t-[2.5rem] rounded-b-none bg-transparent">
+                <div className="absolute inset-0 overflow-hidden rounded-t-[2.5rem] rounded-b-none bg-transparent">
                   <Image
                     src="/img2.png"
                     alt="Portrait"

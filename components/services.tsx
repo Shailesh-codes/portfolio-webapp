@@ -442,9 +442,17 @@ export default function Services() {
           onClick={() => setSelectedProject(null)}
         >
           <div
-            className="relative max-w-2xl w-full rounded-3xl border border-zinc-200 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-lg p-6 md:p-8 shadow-2xl overflow-y-auto max-h-[90vh] animate-slide-up hover:border-[var(--lavender)]/20 transition-colors duration-500"
+            className="relative max-w-2xl w-full rounded-3xl border border-zinc-200 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-lg pl-6 pr-14 py-8 md:p-8 shadow-2xl overflow-y-auto max-h-[90vh] animate-slide-up hover:border-[var(--lavender)]/20 transition-colors duration-500"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Close Button */}
+            <button
+              onClick={() => setSelectedProject(null)}
+              className="absolute top-8 right-4 p-2 rounded-xl border border-zinc-200/50 dark:border-zinc-800/80 text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200 bg-white/95 dark:bg-zinc-900/95 shadow-sm transition-all z-20 cursor-pointer hover:scale-105"
+              aria-label="Close Details"
+            >
+              <X size={16} strokeWidth={2.5} />
+            </button>
             {/* Modal Ambient Corner Flare */}
             <div
               className="absolute top-0 right-0 w-48 h-48 -z-10 rounded-full blur-[60px] pointer-events-none opacity-40"

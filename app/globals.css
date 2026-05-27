@@ -128,3 +128,46 @@ body {
 .animate-marquee-infinite:hover {
   animation-play-state: paused;
 }
+
+/* Custom Scrollbar Styles */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #d8b4fe var(--background);
+}
+
+.dark html {
+  scrollbar-color: #4c1d95 var(--background);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d8b4fe; /* Light lavender for light theme */
+  border-radius: 9999px;
+  border: 2px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--lavender);
+}
+
+/* Dark Mode Scrollbar Overrides */
+.dark ::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #4c1d95; /* Rich deep purple/eggplant-lavender for dark theme */
+  border: 2px solid var(--background);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--lavender);
+}

@@ -9,7 +9,6 @@ export default function Header() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -17,18 +16,20 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
-      // Close mobile menu on scroll
-      if (isMobileMenuOpen) {
-        setIsMobileMenuOpen(false);
-      }
 
       // Always show header at the very top of the page
       if (currentScrollY < 20) {
         setIsVisible(true);
-        setLastScrollY(currentScrollY);
+        lastScrollY = currentScrollY;
+        return;
+      }
+
+      // Check if scroll difference is significant to avoid jitter
+      if (Math.abs(currentScrollY - lastScrollY) < 5) {
         return;
       }
 
@@ -40,12 +41,12 @@ export default function Header() {
         // Scrolling UP
         setIsVisible(false);
       }
-      setLastScrollY(currentScrollY);
+      lastScrollY = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY, isMobileMenuOpen]);
+  }, []);
 
   return (
     <div className="w-full h-24">
@@ -134,73 +135,71 @@ export default function Header() {
         </header>
 
         {/* Mobile Menu Drawer Overlay */}
-        <div
-          className={`fixed inset-x-0 top-20 z-40 bg-[var(--background)]/95 backdrop-blur-lg border-b border-zinc-200/50 dark:border-zinc-800/50 md:hidden transition-all duration-300 ease-in-out ${
-            isMobileMenuOpen
-              ? "opacity-100 translate-y-0 pointer-events-auto"
-              : "opacity-0 -translate-y-4 pointer-events-none"
-          }`}
-          style={{ height: "calc(100vh - 80px)" }}
-        >
-          <nav className="flex flex-col items-center justify-center gap-8 py-16 text-lg font-semibold text-zinc-700 dark:text-zinc-300 h-full">
-            <a
-              href="#about"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="hover:text-[var(--lavender)] dark:hover:text-white transition-colors"
-            >
-              About
-            </a>
-            <a
-              href="#experience"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="hover:text-[var(--lavender)] dark:hover:text-white transition-colors"
-            >
-              Experience
-            </a>
-            <a
-              href="#services"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="hover:text-[var(--lavender)] dark:hover:text-white transition-colors"
-            >
-              Services
-            </a>
-            <a
-              href="#contact"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="hover:text-[var(--lavender)] dark:hover:text-white transition-colors"
-            >
-              Contact
-            </a>
+        {isMobileMenuOpen && (
+          <div
+            className="fixed inset-x-0 top-20 z-40 bg-[var(--background)]/95 backdrop-blur-lg border-b border-zinc-200/50 dark:border-zinc-800/50 md:hidden animate-fade-in"
+            style={{ height: "calc(100vh - 80px)" }}
+          >
+            <nav className="flex flex-col items-center justify-center gap-8 py-16 text-lg font-semibold text-zinc-700 dark:text-zinc-300 h-full">
+              <a
+                href="#about"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="hover:text-[var(--lavender)] dark:hover:text-white transition-colors"
+              >
+                About
+              </a>
+              <a
+                href="#experience"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="hover:text-[var(--lavender)] dark:hover:text-white transition-colors"
+              >
+                Experience
+              </a>
+              <a
+                href="#services"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="hover:text-[var(--lavender)] dark:hover:text-white transition-colors"
+              >
+                Services
+              </a>
+              <a
+                href="#contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="hover:text-[var(--lavender)] dark:hover:text-white transition-colors"
+              >
+                Contact
+              </a>
 
-            {/* Mobile drawer social channels */}
-            <div className="flex items-center gap-6 mt-8 border-t border-zinc-200/50 dark:border-zinc-800/50 pt-10 w-1/2 justify-center text-zinc-500 dark:text-zinc-400">
-              <a
-                href="https://github.com/Shailesh-codes"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-black dark:hover:text-white transition-colors"
-              >
-                <FaGithub size={20} />
-              </a>
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#0A66C2] transition-colors"
-              >
-                <FaLinkedin size={20} />
-              </a>
-              <a
-                href="https://www.instagram.com/_shailesh__24?utm_source=qr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#E1306C] transition-colors"
-              >
-                <FaInstagram size={20} />
-              </a>
-            </div>
-          </nav>
-        </div>
+              {/* Mobile drawer social channels */}
+              <div className="flex items-center gap-6 mt-8 border-t border-zinc-200/50 dark:border-zinc-800/50 pt-10 w-1/2 justify-center text-zinc-500 dark:text-zinc-400">
+                <a
+                  href="https://github.com/Shailesh-codes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-black dark:hover:text-white transition-colors"
+                >
+                  <FaGithub size={20} />
+                </a>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#0A66C2] transition-colors"
+                >
+                  <FaLinkedin size={20} />
+                </a>
+                <a
+                  href="https://www.instagram.com/_shailesh__24?utm_source=qr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#E1306C] transition-colors"
+                >
+                  <FaInstagram size={20} />
+                </a>
+              </div>
+            </nav>
+          </div>
+        )}
       </div>
     </div>
   );
