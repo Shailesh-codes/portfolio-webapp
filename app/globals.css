@@ -23,7 +23,7 @@ html {
 .dark {
   --background: #0C0714; /* Deep, rich dark eggplant background instead of plain black */
   --foreground: #F3EEF5; /* Off-white with a slight lavender tint */
-  --lavender: #4a044e; /* Dark theme accent */
+  --lavender: #c084fc; /* Dark theme accent */
   --blob-color: #3b0764; /* Rich deep grape blob in dark mode */
 }
 

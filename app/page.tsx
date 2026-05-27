@@ -1,21 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import { useTheme } from "next-themes";
-import { Sun, Moon, Code2, Award, Download, CheckCircle2, ZoomIn, X } from "lucide-react";
+import { Code2, Award, Download, CheckCircle2, ZoomIn, X } from "lucide-react";
 import { FaGithub, FaLinkedin, FaInstagram, FaReact, FaNodeJs } from "react-icons/fa";
 import { SiMongodb, SiExpress, SiNextdotjs, SiMysql, SiSupabase, SiFirebase, SiPhp, SiTailwindcss } from "react-icons/si";
 import { useEffect, useState } from "react";
 import Works from "../components/works";
 import Services from "../components/services";
 import Contact from "../components/contact";
+import Header from "../components/header";
 
 const skills = [
   { name: "MongoDB", icon: SiMongodb, color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/20" },
   { name: "Express", icon: SiExpress, color: "text-zinc-700 dark:text-zinc-300", bg: "bg-zinc-100 dark:bg-zinc-800/40" },
   { name: "React", icon: FaReact, color: "text-cyan-400", bg: "bg-cyan-50 dark:bg-cyan-950/20" },
   { name: "Node.js", icon: FaNodeJs, color: "text-green-500", bg: "bg-green-50 dark:bg-green-950/20" },
-  { name: "Next.js", icon: SiNextdotjs, color: "text-zinc-900 dark:text-zinc-100", bg: "bg-zinc-900/5 dark:bg-zinc-850/50" },
+  { name: "Next.js", icon: SiNextdotjs, color: "text-zinc-900 dark:text-zinc-100", bg: "bg-zinc-900/5 dark:bg-zinc-800/50" },
   { name: "MySQL", icon: SiMysql, color: "text-sky-600", bg: "bg-sky-50 dark:bg-sky-950/20" },
   { name: "Supabase", icon: SiSupabase, color: "text-emerald-500", bg: "bg-emerald-50/50 dark:bg-emerald-950/10" },
   { name: "Firebase", icon: SiFirebase, color: "text-amber-500", bg: "bg-amber-50 dark:bg-amber-950/20" },
@@ -25,7 +25,6 @@ const skills = [
 ];
 
 export default function Home() {
-  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
@@ -48,72 +47,7 @@ export default function Home() {
       </div>
 
       {/* Header */}
-      <header className="flex items-center justify-between px-6 md:px-8 py-6 md:py-8 z-10 w-full max-w-7xl mx-auto">
-        <div className="flex items-center gap-2">
-          <div className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-            Portfolio<span className="text-[var(--lavender)]">.</span>
-          </div>
-        </div>
-
-        <nav className="hidden md:flex items-center gap-10 text-[15px] font-medium text-zinc-600 dark:text-zinc-400">
-          <a href="#about" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">About</a>
-          <a href="#experience" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Experience</a>
-          <a href="#services" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Services</a>
-          <a href="#contact" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Contact</a>
-        </nav>
-
-        <div className="flex items-center gap-6">
-          {/* Theme Toggles */}
-          <div className="flex items-center bg-zinc-100/80 dark:bg-zinc-800/80 rounded-full p-1 border border-zinc-200/50 dark:border-zinc-700/50 backdrop-blur-sm">
-            <button
-              onClick={() => setTheme("light")}
-              className={`p-2 rounded-full transition-all duration-300 ${mounted && theme === "light"
-                ? "bg-white text-[var(--lavender)] shadow-sm"
-                : "text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300"
-                }`}
-              aria-label="Light Theme"
-            >
-              <Sun size={16} strokeWidth={2.5} />
-            </button>
-            <button
-              onClick={() => setTheme("dark")}
-              className={`p-2 rounded-full transition-all duration-300 ${mounted && theme === "dark"
-                ? "bg-zinc-700 text-white shadow-sm"
-                : "text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300"
-                }`}
-              aria-label="Dark Theme"
-            >
-              <Moon size={16} strokeWidth={2.5} />
-            </button>
-          </div>
-          <div className="hidden sm:flex items-center gap-5 text-zinc-500 dark:text-zinc-400">
-            <a
-              href="https://github.com/Shailesh-codes"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-black dark:hover:text-white transition-colors"
-            >
-              <FaGithub size={18} />
-            </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#0A66C2] transition-colors"
-            >
-              <FaLinkedin size={18} />
-            </a>
-            <a
-              href="https://www.instagram.com/_shailesh__24?utm_source=qr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#E1306C] transition-colors"
-            >
-              <FaInstagram size={18} />
-            </a>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Main Content */}
       <main className="flex-1 z-10 w-full">
@@ -123,16 +57,16 @@ export default function Home() {
             {/* Left Column - Text */}
             <div className="flex-1 flex flex-col gap-6 md:gap-8 max-w-2xl mt-8 lg:mt-0 lg:pb-15">
               {/* Intro Chip */}
-              <div className="relative group inline-flex items-center gap-3 px-4.5 py-2.5 rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 w-fit shadow-sm hover:border-[var(--lavender)]/40 hover:shadow-lg hover:shadow-[var(--lavender)]/5 hover:scale-[1.02] transition-all duration-300 select-none">
+              <div className="relative group inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/90 dark:bg-zinc-900/80 backdrop-blur-md border border-zinc-200 dark:border-zinc-800/80 w-fit shadow-md shadow-zinc-100/50 dark:shadow-none hover:border-[var(--lavender)]/40 hover:scale-[1.015] transition-all duration-300 select-none">
                 {/* Purple Halo Behind */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-300 -z-10" />
 
-                <span className="relative flex h-2.5 w-2.5">
+                <span className="relative flex h-2 w-2 ml-1">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-500 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-purple-500"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
                 </span>
-                <span className="text-[13px] md:text-sm font-medium tracking-wide text-zinc-800 dark:text-zinc-250 flex items-center gap-1.5">
-                  Hi, I'm <span className="bg-gradient-to-r from-purple-600 via-fuchsia-500 to-pink-500 bg-clip-text text-transparent dark:from-purple-400 dark:via-fuchsia-400 dark:to-pink-400 font-bold tracking-tight">Shailesh Bhosale</span>
+                <span className="text-[13px] md:text-sm font-semibold tracking-wide text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5">
+                  Hi, I'm <span className="bg-gradient-to-r from-purple-600 via-fuchsia-500 to-pink-500 bg-clip-text text-transparent dark:from-purple-300 dark:via-fuchsia-300 dark:to-pink-300 font-extrabold tracking-tight">Shailesh Bhosale</span>
                   <span className="animate-wave">👋</span>
                 </span>
               </div>
@@ -202,7 +136,7 @@ export default function Home() {
         </section>
 
         {/* About & UpGrad Certification Section */}
-        <section id="about" className="min-h-screen flex items-center justify-center w-full border-t border-zinc-100/50 dark:border-zinc-900/50 py-16 md:py-28 relative">
+        <section id="about" className="min-h-screen flex items-center justify-center w-full py-16 md:py-28 relative">
           <div className="w-full max-w-7xl mx-auto px-6 md:px-8 flex flex-col lg:flex-row items-center lg:items-start justify-between gap-16 lg:gap-24">
             {/* Right Side - Certificate Card */}
             <div className="flex-1 flex flex-col gap-6 w-full max-w-md">
@@ -266,7 +200,7 @@ export default function Home() {
                     return (
                       <div
                         key={`skill-first-${index}`}
-                        className="flex items-center gap-3 px-5 py-3.5 rounded-2xl border border-zinc-100 dark:border-zinc-850 bg-white/50 dark:bg-zinc-900/30 backdrop-blur-sm hover:border-[var(--lavender)]/35 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300 group cursor-pointer"
+                        className="flex items-center gap-3 px-5 py-3.5 rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white/50 dark:bg-zinc-900/30 backdrop-blur-sm hover:border-[var(--lavender)]/35 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300 group cursor-pointer"
                       >
                         <div className={`w-8 h-8 rounded-lg ${skill.bg} flex items-center justify-center transition-colors duration-300`}>
                           <Icon className={`w-4 h-4 ${skill.color} transition-transform duration-500 group-hover:scale-115 group-hover:rotate-12`} />
@@ -281,7 +215,7 @@ export default function Home() {
                     return (
                       <div
                         key={`skill-second-${index}`}
-                        className="flex items-center gap-3 px-5 py-3.5 rounded-2xl border border-zinc-100 dark:border-zinc-850 bg-white/50 dark:bg-zinc-900/30 backdrop-blur-sm hover:border-[var(--lavender)]/35 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300 group cursor-pointer"
+                        className="flex items-center gap-3 px-5 py-3.5 rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white/50 dark:bg-zinc-900/30 backdrop-blur-sm hover:border-[var(--lavender)]/35 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300 group cursor-pointer"
                       >
                         <div className={`w-8 h-8 rounded-lg ${skill.bg} flex items-center justify-center transition-colors duration-300`}>
                           <Icon className={`w-4 h-4 ${skill.color} transition-transform duration-500 group-hover:scale-115 group-hover:rotate-12`} />
@@ -339,7 +273,7 @@ export default function Home() {
           >
             <X size={24} />
           </button>
-          <div className="relative max-w-4xl w-full max-h-[85vh] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div className="relative w-full h-full max-w-4xl max-h-[85vh] rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <Image
               src="/certificate.jpeg"
               alt="UpGrad Certified Full Stack Developer Certificate"

@@ -25,7 +25,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28 border-t border-zinc-100/50 dark:border-zinc-900/50 w-full relative">
+    <section id="contact" className="py-20 md:py-28 w-full relative">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-8">
         
         {/* Section Header */}
@@ -59,7 +59,7 @@ export default function Contact() {
                 <div className="space-y-6">
                   {/* Location Info */}
                   <div className="flex items-start gap-4">
-                    <div className="p-3.5 rounded-2xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-100 dark:border-zinc-850 text-zinc-650 dark:text-zinc-350">
+                    <div className="p-3.5 rounded-2xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-100 dark:border-zinc-800 text-zinc-600 dark:text-zinc-300">
                       <MapPin className="w-5 h-5" />
                     </div>
                     <div>
@@ -70,12 +70,12 @@ export default function Contact() {
 
                   {/* Email Info */}
                   <div className="flex items-start gap-4">
-                    <div className="p-3.5 rounded-2xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-100 dark:border-zinc-850 text-zinc-655 dark:text-zinc-350">
+                    <div className="p-3.5 rounded-2xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-100 dark:border-zinc-800 text-zinc-600 dark:text-zinc-300">
                       <Mail className="w-5 h-5" />
                     </div>
                     <div>
                       <h4 className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">Email</h4>
-                      <a href="mailto:shailesh.bhosale.geekrider@gmail.com" className="text-sm font-semibold text-zinc-850 dark:text-zinc-200 mt-1 hover:text-[var(--lavender)] transition-colors block">
+                      <a href="mailto:shailesh.bhosale.geekrider@gmail.com" className="text-sm font-semibold text-zinc-800 dark:text-zinc-200 mt-1 hover:text-[var(--lavender)] transition-colors block">
                         shaileshb517@gmail.com
                       </a>
                     </div>
@@ -84,14 +84,14 @@ export default function Contact() {
               </div>
 
               {/* Social Channels */}
-              <div className="mt-12 pt-6 border-t border-zinc-100 dark:border-zinc-850">
+              <div className="mt-12 pt-6 border-t border-zinc-100 dark:border-zinc-800">
                 <h4 className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider mb-4">Follow Me</h4>
                 <div className="flex items-center gap-3">
                   <a
                     href="https://github.com/Shailesh-codes"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group/social p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-100 dark:border-zinc-850 text-zinc-600 dark:text-zinc-400 hover:border-zinc-900 dark:hover:border-zinc-100 hover:text-[#181717] dark:hover:text-white transition-all duration-300"
+                    className="group/social p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-100 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-zinc-900 dark:hover:border-zinc-100 hover:text-[#181717] dark:hover:text-white transition-all duration-300"
                   >
                     <FaGithub className="w-5 h-5 transition-transform duration-500 group-hover/social:scale-110" />
                   </a>
@@ -99,7 +99,7 @@ export default function Contact() {
                     href="https://www.linkedin.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group/social p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-100 dark:border-zinc-850 text-zinc-600 dark:text-zinc-400 hover:border-[#0A66C2] dark:hover:border-[#0A66C2] hover:text-[#0A66C2] dark:hover:text-[#0A66C2] transition-all duration-300"
+                    className="group/social p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-100 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-[#0A66C2] dark:hover:border-[#0A66C2] hover:text-[#0A66C2] dark:hover:text-[#0A66C2] transition-all duration-300"
                   >
                     <FaLinkedin className="w-5 h-5 transition-transform duration-500 group-hover/social:scale-110" />
                   </a>
@@ -107,7 +107,7 @@ export default function Contact() {
                     href="https://www.instagram.com/_shailesh__24?utm_source=qr"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group/social p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-100 dark:border-zinc-850 text-zinc-600 dark:text-zinc-400 hover:border-[#E1306C] dark:hover:border-[#E1306C] hover:text-[#E1306C] dark:hover:text-[#E1306C] transition-all duration-300"
+                    className="group/social p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-100 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-[#E1306C] dark:hover:border-[#E1306C] hover:text-[#E1306C] dark:hover:text-[#E1306C] transition-all duration-300"
                   >
                     <FaInstagram className="w-5 h-5 transition-transform duration-500 group-hover/social:scale-110" />
                   </a>
@@ -130,7 +130,7 @@ export default function Contact() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   {/* Name Input */}
                   <div className="space-y-2">
-                    <label htmlFor="name" className="text-xs font-bold text-zinc-555 dark:text-zinc-400 uppercase tracking-wider">
+                    <label htmlFor="name" className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
                       Your Name
                     </label>
                     <input
@@ -146,7 +146,7 @@ export default function Contact() {
 
                   {/* Email Input */}
                   <div className="space-y-2">
-                    <label htmlFor="email" className="text-xs font-bold text-zinc-555 dark:text-zinc-400 uppercase tracking-wider">
+                    <label htmlFor="email" className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
                       Your Email
                     </label>
                     <input
@@ -163,7 +163,7 @@ export default function Contact() {
 
                 {/* Message Input */}
                 <div className="space-y-2">
-                  <label htmlFor="message" className="text-xs font-bold text-zinc-555 dark:text-zinc-400 uppercase tracking-wider">
+                  <label htmlFor="message" className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
                     Message
                   </label>
                   <textarea

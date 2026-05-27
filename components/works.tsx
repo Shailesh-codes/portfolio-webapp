@@ -9,14 +9,14 @@ const techStack = [
   { name: "Next.js", icon: SiNextdotjs, color: "text-zinc-900 dark:text-zinc-100" },
   { name: "React", icon: FaReact, color: "text-cyan-500" },
   { name: "Node.js", icon: FaNodeJs, color: "text-green-500" },
-  { name: "Express", icon: SiExpress, color: "text-zinc-650 dark:text-zinc-350" },
+  { name: "Express", icon: SiExpress, color: "text-zinc-600 dark:text-zinc-300" },
   { name: "MongoDB", icon: SiMongodb, color: "text-emerald-500" },
   { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-sky-500" }
 ];
 
 export default function Works() {
   return (
-    <section id="experience" className="py-20 md:py-28 border-t border-zinc-100/50 dark:border-zinc-900/50 w-full relative">
+    <section id="experience" className="py-20 md:py-28 w-full relative">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-8">
 
         {/* Section Header */}
@@ -88,9 +88,9 @@ export default function Works() {
               </div>
 
               {/* Right Side: Decorative Code Mockup Visual */}
-              <div className="hidden md:flex flex-col gap-3.5 p-4 md:p-5 rounded-2xl bg-zinc-950 dark:bg-black/60 border border-zinc-850 w-full max-w-[280px] shadow-2xl relative select-none overflow-hidden group-hover:border-[var(--lavender)]/20 transition-colors duration-500 font-mono text-[11px] leading-relaxed self-center">
+              <div className="hidden md:flex flex-col gap-3.5 p-4 md:p-5 rounded-2xl bg-zinc-950 dark:bg-black/60 border border-zinc-800 w-full max-w-[280px] shadow-2xl relative select-none overflow-hidden group-hover:border-[var(--lavender)]/20 transition-colors duration-500 font-mono text-[11px] leading-relaxed self-center">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-[var(--lavender)]/10 rounded-full blur-xl pointer-events-none" />
-                <div className="flex items-center justify-between pb-2.5 border-b border-zinc-850">
+                <div className="flex items-center justify-between pb-2.5 border-b border-zinc-800">
                   <div className="flex items-center gap-1.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
                     <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
@@ -172,7 +172,7 @@ export default function Works() {
 
             <div className="mt-8">
               <a
-                href="mailto:contact@example.com"
+                href="mailto:shaileshb517@gmail.com"
                 className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-[var(--lavender)] text-white font-bold rounded-xl transition-all shadow-md shadow-[var(--lavender)]/20 hover:shadow-lg hover:shadow-[var(--lavender)]/30 hover:-translate-y-0.5 select-none text-sm group"
               >
                 <Mail className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />

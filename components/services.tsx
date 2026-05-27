@@ -295,7 +295,7 @@ export default function Services() {
   }, []);
 
   return (
-    <section id="services" className="py-20 md:py-28 border-t border-zinc-100/50 dark:border-zinc-900/50 w-full relative overflow-hidden">
+    <section id="services" className="py-20 md:py-28 w-full relative overflow-hidden">
       {/* Tech grid overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
@@ -340,8 +340,14 @@ export default function Services() {
                   <div
                     key={project.id}
                     onClick={() => setSelectedProject(project)}
-                    className="group flex-none w-[290px] sm:w-[350px] md:w-[380px] rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 p-6 md:p-8 flex flex-col justify-between hover:shadow-2xl hover:shadow-[var(--lavender)]/5 hover:border-[var(--lavender)]/35 hover:scale-[1.01] transition-all duration-500 cursor-pointer overflow-hidden relative"
+                    style={{
+                      "--glow": project.glowColor
+                    } as React.CSSProperties}
+                    className="group flex-none w-[290px] sm:w-[350px] md:w-[380px] rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/40 p-6 md:p-8 flex flex-col justify-between hover:shadow-[0_20px_45px_var(--glow)] hover:border-zinc-300 dark:hover:border-zinc-700/80 hover:scale-[1.015] transition-all duration-500 cursor-pointer overflow-hidden relative"
                   >
+                    {/* Decorative Tech Grid inside Card */}
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808007_1px,transparent_1px),linear-gradient(to_bottom,#80808007_1px,transparent_1px)] bg-[size:14px_14px] opacity-40 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none -z-10" />
+
                     {/* Custom colored glow on hover */}
                     <div
                       className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
@@ -352,19 +358,24 @@ export default function Services() {
 
                     <div>
                       <div className="flex items-center justify-between mb-8">
-                        <span className="text-xs font-bold text-zinc-400 dark:text-zinc-500 tracking-wide uppercase">
-                          {project.category}
-                        </span>
-                        <div className="w-10 h-10 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-850 flex items-center justify-center text-zinc-650 dark:text-zinc-400 group-hover:text-[var(--lavender)] group-hover:border-[var(--lavender)]/35 group-hover:bg-purple-500/5 group-hover:shadow-[0_0_15px_rgba(192,132,252,0.1)] transition-all duration-500">
-                          <ProjectIcon size={18} strokeWidth={2} className="group-hover:scale-110 transition-transform duration-300" />
+                        <div className="flex items-center gap-2">
+                          <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${project.color}`} />
+                          <span className="text-[11px] font-bold text-zinc-400 dark:text-zinc-500 tracking-wider uppercase">
+                            {project.category}
+                          </span>
+                        </div>
+                        <div className="w-10 h-10 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-600 dark:text-zinc-400 group-hover:text-white group-hover:border-transparent transition-all duration-500 relative overflow-hidden">
+                          {/* Background gradient showing on hover */}
+                          <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0`} />
+                          <ProjectIcon size={18} strokeWidth={2} className="group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 relative z-10" />
                         </div>
                       </div>
 
-                      <h3 className="text-xl md:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 group-hover:text-[var(--lavender)] transition-colors duration-300">
+                      <h3 className={`text-xl md:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 transition-all duration-300 group-hover:bg-gradient-to-r ${project.color} group-hover:bg-clip-text group-hover:text-transparent`}>
                         {project.title}
                       </h3>
 
-                      <p className="text-zinc-650 dark:text-zinc-400 text-[13px] md:text-sm leading-relaxed mt-4">
+                      <p className="text-zinc-600 dark:text-zinc-400 text-[13px] md:text-sm leading-relaxed mt-4">
                         {project.description}
                       </p>
                     </div>
@@ -378,7 +389,7 @@ export default function Services() {
                           return (
                             <span
                               key={t}
-                              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-zinc-50 dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-800/80 text-zinc-600 dark:text-zinc-300 text-[11px] font-bold"
+                              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-zinc-50 dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-800/80 text-zinc-600 dark:text-zinc-300 text-[11px] font-bold hover:border-zinc-300 dark:hover:border-zinc-700/80 transition-all duration-300"
                             >
                               <Icon className={`w-3.5 h-3.5 ${meta ? meta.color : "text-zinc-500"}`} />
                               {t}
@@ -386,14 +397,18 @@ export default function Services() {
                           );
                         })}
                         {project.tech.length > 3 && (
-                          <span className="inline-flex items-center px-2 py-1 rounded-lg bg-zinc-50 dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-800/80 text-zinc-450 text-[11px] font-semibold">
+                          <span className="inline-flex items-center px-2 py-1 rounded-lg bg-zinc-50 dark:bg-zinc-950 border border-zinc-200/60 dark:border-zinc-800/80 text-zinc-400 text-[11px] font-semibold">
                             +{project.tech.length - 3} more
                           </span>
                         )}
                       </div>
 
-                      <div className="flex items-center justify-between border-t border-zinc-100 dark:border-zinc-850 pt-4 w-full">
-                        <div className="flex items-center text-xs font-bold text-[var(--lavender)] group-hover:translate-x-1 transition-transform duration-300 gap-1.5">
+                      <div className="flex items-center justify-between border-t border-zinc-100 dark:border-zinc-800 pt-4 w-full">
+                        <div className="flex items-center text-xs font-bold text-zinc-700 dark:text-zinc-350 group-hover:text-[var(--lavender)] transition-colors duration-300 gap-2">
+                          <span className="relative flex h-2 w-2">
+                            <span className={`animate-ping absolute inline-flex h-full w-full rounded-full bg-gradient-to-r ${project.color} opacity-75`} />
+                            <span className={`relative inline-flex rounded-full h-2 w-2 bg-gradient-to-r ${project.color}`} />
+                          </span>
                           Explore Details
                           <ArrowUpRight size={14} strokeWidth={2.5} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                         </div>
@@ -438,23 +453,44 @@ export default function Services() {
               }}
             />
 
-            {/* Header section inside modal */}
-            <div className="flex items-center justify-between border-b border-zinc-100 dark:border-zinc-800/80 pb-6 mb-6">
-              <div>
-                <span className="text-[10px] font-extrabold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
-                  {selectedProject.category}
+            {/* Abstract Tech Header Showcase */}
+            <div className="relative w-full h-40 sm:h-48 rounded-2xl overflow-hidden mb-6 border border-zinc-200 dark:border-zinc-800/80 bg-zinc-950 flex flex-col justify-between p-5 font-mono select-none">
+              {/* Mock browser dot controls */}
+              <div className="flex items-center justify-between pb-3 border-b border-zinc-900 w-full z-10">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                </div>
+                <span className="text-[10px] text-zinc-600 font-sans tracking-wide">
+                  {selectedProject.id}.config
                 </span>
-                <h3 className="text-2xl md:text-3xl font-extrabold text-zinc-900 dark:text-zinc-50 mt-1">
-                  {selectedProject.title}
-                </h3>
+                <div className="w-8" />
               </div>
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="p-2.5 text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-100 bg-zinc-100 dark:bg-zinc-800/60 rounded-full hover:scale-105 transition-all cursor-pointer"
-                aria-label="Close details"
-              >
-                <X size={18} strokeWidth={2.5} />
-              </button>
+
+              {/* Console details */}
+              <div className="flex-1 flex flex-col justify-center py-2 text-zinc-400 z-10">
+                <div className="text-[11px] text-zinc-600">{"$ init --project=" + selectedProject.id}</div>
+                <div className="text-base sm:text-lg font-bold text-zinc-100 mt-1 flex items-center gap-2">
+                  <span className={`bg-gradient-to-r ${selectedProject.color} bg-clip-text text-transparent`}>
+                    {selectedProject.title}
+                  </span>
+                  <span className="w-1.5 h-4.5 bg-[var(--lavender)] animate-pulse inline-block" />
+                </div>
+                <div className="text-[10px] text-zinc-500 mt-2 tracking-wide uppercase font-semibold">
+                  {"STATUS: PRODUCTION_READY // HOSTED: ACTIVE"}
+                </div>
+              </div>
+
+              {/* Bottom row decor */}
+              <div className="flex items-center justify-between text-[9px] text-zinc-600 font-sans border-t border-zinc-900/50 pt-2.5 z-10">
+                <span>STACK: {selectedProject.tech.slice(0, 4).join(" • ")}</span>
+                <span className="text-[var(--lavender)] font-bold">STABLE DEPLOYMENT</span>
+              </div>
+
+              {/* Ambient grid background and color glow inside container */}
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808006_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:10px_10px] pointer-events-none" />
+              <div className={`absolute -right-16 -bottom-16 w-36 h-36 rounded-full blur-2xl opacity-20 bg-gradient-to-br ${selectedProject.color} pointer-events-none`} />
             </div>
 
             {/* Content Details */}
@@ -463,7 +499,7 @@ export default function Services() {
                 <h4 className="text-xs font-extrabold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-2">
                   Project Overview
                 </h4>
-                <p className="text-sm md:text-base text-zinc-650 dark:text-zinc-350 leading-relaxed">
+                <p className="text-sm md:text-base text-zinc-600 dark:text-zinc-300 leading-relaxed">
                   {selectedProject.longDescription}
                 </p>
               </div>
