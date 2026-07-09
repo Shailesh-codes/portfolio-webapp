@@ -258,7 +258,7 @@ export default function AdminPage() {
           {/* Quick Notice */}
           <div className="mt-8 pt-6 border-t border-zinc-100 dark:border-zinc-800/80 text-center">
             <p className="text-[11px] text-zinc-400 dark:text-zinc-500">
-              Default local password: <code className="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 font-bold font-mono">admin123</code>
+              Enter your configured project admin password.
             </p>
           </div>
         </div>
