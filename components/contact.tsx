@@ -3,26 +3,38 @@
 import React, { useState } from "react";
 import { Mail, MapPin, Send, MessageSquare } from "lucide-react";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { submitContactAction } from "@/app/actions/contact";
 
 export default function Contact() {
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formState.name || !formState.email || !formState.message) return;
 
     setIsSubmitting(true);
-    // Simulate API request delay
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setSubmitted(true);
-    setFormState({ name: "", email: "", message: "" });
-
-    // Reset success message after 5 seconds
-    setTimeout(() => setSubmitted(false), 5000);
+    setSubmitError(null);
+    
+    try {
+      const res = await submitContactAction(formState);
+      if (res.success) {
+        setSubmitted(true);
+        setFormState({ name: "", email: "", message: "" });
+        // Reset success message after 5 seconds
+        setTimeout(() => setSubmitted(false), 5000);
+      } else {
+        setSubmitError(res.error || "Failed to send message. Please try again.");
+      }
+    } catch (err: any) {
+      setSubmitError("An unexpected error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
 
   return (
     <section id="contact" className="py-20 md:py-28 w-full relative">
@@ -96,7 +108,7 @@ export default function Contact() {
                     <FaGithub className="w-5 h-5 transition-transform duration-500 group-hover/social:scale-110" />
                   </a>
                   <a
-                    href="https://www.linkedin.com"
+                    href="https://www.linkedin.com/in/shailesh-bhosale-g11/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group/social p-3 rounded-2xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-100 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-[#0A66C2] dark:hover:border-[#0A66C2] hover:text-[#0A66C2] dark:hover:text-[#0A66C2] transition-all duration-300"
@@ -200,6 +212,13 @@ export default function Contact() {
                 {submitted && (
                   <div className="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/50 text-emerald-800 dark:text-emerald-400 text-xs font-bold animate-fade-in">
                     Message sent successfully! Thank you for reaching out.
+                  </div>
+                )}
+
+                {/* Error Banner */}
+                {submitError && (
+                  <div className="p-4 rounded-xl bg-rose-50 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-900/50 text-rose-800 dark:text-rose-400 text-xs font-bold animate-fade-in">
+                    {submitError}
                   </div>
                 )}
               </form>

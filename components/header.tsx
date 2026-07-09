@@ -106,7 +106,7 @@ export default function Header() {
                 <FaGithub size={18} />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/shailesh-bhosale-g11/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-[#0A66C2] transition-colors"
