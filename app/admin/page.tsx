@@ -1,17 +1,17 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { 
-  Inbox, 
-  Trash2, 
-  Search, 
-  RefreshCw, 
-  LogOut, 
-  Lock, 
-  Mail, 
-  MessageSquare, 
-  Calendar, 
-  Check, 
+import {
+  Inbox,
+  Trash2,
+  Search,
+  RefreshCw,
+  LogOut,
+  Lock,
+  Mail,
+  MessageSquare,
+  Calendar,
+  Check,
   ExternalLink,
   ChevronRight,
   Filter,
@@ -20,10 +20,10 @@ import {
   ArrowLeft
 } from "lucide-react";
 import Link from "next/link";
-import { 
-  getContactsAction, 
-  updateContactStatusAction, 
-  deleteContactAction 
+import {
+  getContactsAction,
+  updateContactStatusAction,
+  deleteContactAction
 } from "../actions/contact";
 
 interface ContactMessage {
@@ -40,17 +40,17 @@ export default function AdminPage() {
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [loginError, setLoginError] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  
+
   // Contacts data
   const [contacts, setContacts] = useState<ContactMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isSimulated, setIsSimulated] = useState(false);
-  
+
   // Filters & Search
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
-  
+
   // Selected Message for detailed preview modal
   const [selectedMessage, setSelectedMessage] = useState<ContactMessage | null>(null);
 
@@ -114,7 +114,7 @@ export default function AdminPage() {
       const res = await updateContactStatusAction(id, newStatus, password);
       if (res.success) {
         // Update local state
-        setContacts(prev => 
+        setContacts(prev =>
           prev.map(c => c.id === id ? { ...c, status: newStatus } : c)
         );
         if (selectedMessage && selectedMessage.id === id) {
@@ -128,7 +128,7 @@ export default function AdminPage() {
 
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this message?")) return;
-    
+
     try {
       const res = await deleteContactAction(id, password);
       if (res.success) {
@@ -160,14 +160,14 @@ export default function AdminPage() {
 
   // Filtered contacts
   const filteredContacts = contacts.filter(contact => {
-    const matchesSearch = 
+    const matchesSearch =
       contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       contact.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
       contact.message.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesStatus = 
+
+    const matchesStatus =
       statusFilter === "all" || contact.status === statusFilter;
-      
+
     return matchesSearch && matchesStatus;
   });
 
@@ -182,8 +182,8 @@ export default function AdminPage() {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 translate-x-1/2 translate-y-1/2 rounded-full bg-pink-500/10 dark:bg-pink-500/5 blur-3xl pointer-events-none" />
 
         {/* Back to Home Button */}
-        <Link 
-          href="/" 
+        <Link
+          href="/"
           className="absolute top-8 left-8 flex items-center gap-2 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 text-sm font-semibold transition-colors duration-300 group"
         >
           <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
@@ -204,16 +204,16 @@ export default function AdminPage() {
             </p>
           </div>
 
-          <form 
+          <form
             onSubmit={(e) => {
               e.preventDefault();
               handleLogin(password);
-            }} 
+            }}
             className="space-y-6"
           >
             <div className="space-y-2">
-              <label 
-                htmlFor="password" 
+              <label
+                htmlFor="password"
                 className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider block"
               >
                 Access Password
@@ -315,7 +315,7 @@ export default function AdminPage() {
 
       {/* Main Panel Content */}
       <main className="max-w-7xl mx-auto px-6 md:px-12 mt-8">
-        
+
         {/* Stats Row */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
           {/* Total card */}
@@ -375,41 +375,37 @@ export default function AdminPage() {
             </span>
             <button
               onClick={() => setStatusFilter("all")}
-              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${
-                statusFilter === "all"
+              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${statusFilter === "all"
                   ? "bg-[var(--lavender)] text-white"
                   : "bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800"
-              }`}
+                }`}
             >
               All ({contacts.length})
             </button>
             <button
               onClick={() => setStatusFilter("unread")}
-              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${
-                statusFilter === "unread"
+              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${statusFilter === "unread"
                   ? "bg-amber-500 text-white"
                   : "bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800"
-              }`}
+                }`}
             >
               Unread ({contacts.filter(c => c.status === "unread").length})
             </button>
             <button
               onClick={() => setStatusFilter("read")}
-              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${
-                statusFilter === "read"
+              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${statusFilter === "read"
                   ? "bg-sky-500 text-white"
                   : "bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800"
-              }`}
+                }`}
             >
               Read ({contacts.filter(c => c.status === "read").length})
             </button>
             <button
               onClick={() => setStatusFilter("replied")}
-              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${
-                statusFilter === "replied"
+              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${statusFilter === "replied"
                   ? "bg-emerald-500 text-white"
                   : "bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800"
-              }`}
+                }`}
             >
               Replied ({contacts.filter(c => c.status === "replied").length})
             </button>
@@ -432,8 +428,8 @@ export default function AdminPage() {
             </div>
             <h3 className="text-lg font-bold text-zinc-800 dark:text-zinc-200">No Messages Found</h3>
             <p className="text-zinc-500 dark:text-zinc-400 text-xs mt-1 max-w-xs">
-              {contacts.length === 0 
-                ? "No one has reached out to you yet. Submissions from the contact form will appear here!" 
+              {contacts.length === 0
+                ? "No one has reached out to you yet. Submissions from the contact form will appear here!"
                 : "No messages match your selected search query or filters."}
             </p>
           </div>
@@ -445,11 +441,10 @@ export default function AdminPage() {
                 <div
                   key={contact.id}
                   onClick={() => setSelectedMessage(contact)}
-                  className={`group rounded-2xl border p-5 md:p-6 text-left transition-all duration-300 cursor-pointer flex flex-col gap-4 relative overflow-hidden ${
-                    selectedMessage?.id === contact.id
+                  className={`group rounded-2xl border p-5 md:p-6 text-left transition-all duration-300 cursor-pointer flex flex-col gap-4 relative overflow-hidden ${selectedMessage?.id === contact.id
                       ? "border-[var(--lavender)] bg-[var(--lavender)]/5 dark:bg-[var(--lavender)]/10 shadow-lg shadow-[var(--lavender)]/5"
                       : "border-zinc-200 dark:border-zinc-900 bg-white hover:bg-zinc-50/50 dark:bg-zinc-900/40 dark:hover:bg-zinc-900/60"
-                  }`}
+                    }`}
                 >
                   {/* Left indicator glow for unread */}
                   {contact.status === "unread" && (
@@ -520,7 +515,7 @@ export default function AdminPage() {
                       <h3 className="text-lg font-extrabold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
                         Details
                       </h3>
-                      
+
                       {/* Change Status Dropdown */}
                       <select
                         value={selectedMessage.status}
@@ -538,7 +533,7 @@ export default function AdminPage() {
                       <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-100 dark:border-zinc-900 flex flex-col gap-1.5">
                         <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Sender Info</span>
                         <h4 className="font-extrabold text-sm md:text-base text-zinc-900 dark:text-zinc-50">{selectedMessage.name}</h4>
-                        <a 
+                        <a
                           href={`mailto:${selectedMessage.email}`}
                           className="text-xs md:text-sm font-semibold text-[var(--lavender)] hover:underline flex items-center gap-1 w-fit group"
                         >
@@ -573,7 +568,7 @@ export default function AdminPage() {
                       <Mail className="w-3.5 h-3.5" />
                       Reply Email
                     </a>
-                    
+
                     <button
                       onClick={() => handleDelete(selectedMessage.id)}
                       className="p-3 bg-rose-50 dark:bg-rose-950/20 hover:bg-rose-100 dark:hover:bg-rose-950/40 text-rose-600 dark:text-rose-450 border border-rose-100 dark:border-rose-900/40 rounded-xl transition-all cursor-pointer"
