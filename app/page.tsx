@@ -82,7 +82,7 @@ export default function Home() {
               </h1>
 
               <div className="text-base md:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-xl">
-                <p className="mb-2">a <strong className="text-zinc-900 dark:text-zinc-100 font-semibold">Full Stack Developer</strong> with <strong className="text-zinc-900 dark:text-zinc-100 font-semibold">1.8 years of experience</strong>.</p>
+                <p className="mb-2">a <strong className="text-zinc-900 dark:text-zinc-100 font-semibold">Full Stack Developer</strong> with <strong className="text-zinc-900 dark:text-zinc-100 font-semibold">2 years of experience</strong>.</p>
                 <p>I specialize in building robust backend services, interactive user interfaces, and scalable web applications.</p>
               </div>
 
@@ -239,7 +239,7 @@ export default function Home() {
                   </div>
                 </div>
                 <a
-                  href="/resume.pdf"
+                  href="/Shailesh_Full_Stack_Developer.pdf"
                   download
                   className="flex items-center gap-1.5 px-4 py-3 bg-[var(--lavender)] text-white font-semibold rounded-xl hover:opacity-95 transition-all text-xs shadow-md shadow-[var(--lavender)]/25"
                 >

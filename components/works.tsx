@@ -148,7 +148,7 @@ export default function Works() {
               </div>
 
               <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
-                1.8 Years Experience
+                2 Years Experience
               </h3>
 
               <div className="mt-2 text-xs text-zinc-500 dark:text-zinc-400 font-medium">
